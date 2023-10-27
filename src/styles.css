@@ -1,1 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
+
+/* global */
+
+td {
+    vertical-align: middle;
+}
+
+/* global classes */
+.error::before {
+    content: '*';
+    padding-right: 5px;
+}
+
+.w-fit {
+    width: fit-content;
+}
+
+.rounded-image {
+    width: 65px;
+    height: 65px;
+    border-radius: 50% !important;
+}

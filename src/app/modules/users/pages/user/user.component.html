@@ -1,0 +1,30 @@
+<div class="container" *ngIf="user">
+    <div class="row mb-5">
+        <div class="col-md-12">
+            <h3>User Information</h3>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img class="img-fluid img-thumbnail rounded-image" [src]="user?.avatar" />
+                        </div>
+                        <div class="col-md-9">
+                            <h5 class="card-title">{{user.first_name}} {{user.last_name}}</h5>
+                            <p class="card-text">{{user.email}}</p>
+                        </div>
+                    </div>            
+                </div>
+                <div class="card-footer text-muted">
+                    <a routerLink="/app/users/edit" class="btn btn-success rounded mx-2" (click)="signal.currentUser.set(user)">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+.sign-icon{
+    height: 40px;
+    width: 40px;
+    font-size: 15px;
+    position: relative;
+}
+
+.sign-icon i {
+    transform: translate(-50%, -50%);
+    position: absolute;
+}
+
+.divider:after, .divider:before {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
+
+.h-custom {
+    height: calc(100% - 73px);
+}
+
+@media (max-width: 450px) {
+    .h-custom {
+        height: 100%;
+   }
+}

@@ -1,0 +1,22 @@
+<app-loading></app-loading>
+
+<nav class="app-nav">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <img class="navbar-brand" src="assets/app-logo.svg" />
+            </div>
+            <div class="col-6 text-end">
+                <app-logout></app-logout>
+            </div>
+        </div>
+    </div>        
+</nav>
+
+<div class="py-5">    
+    <router-outlet></router-outlet>
+</div>
+
+<footer class="text-center">
+    <app-footer></app-footer>
+</footer>

@@ -1,0 +1,44 @@
+<div class="container">
+    <div class="row">
+        <h3 class="mb-5">
+            {{!signal.currentUser() ? 'Add New User' : 'Edit User'}}            
+        </h3>
+
+        <form [formGroup]="form" class="add-edit-form">
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Enter your name" formControlName="name">
+                        <ng-container *ngIf="(form.get('name')?.invalid && form.get('name')?.touched) || form.get('name')?.dirty">
+                            <small class="text-danger block m-10 error" *ngIf="form.get('name')?.errors?.['required']">
+                              Name is required
+                            </small>
+                        </ng-container>                        
+                    </div>                    
+                </div>
+                <div class="col-12 mb-3">
+                    <div class="form-group">
+                        <label for="job">Job</label>
+                        <input type="text" class="form-control" id="job" placeholder="Enter your job" formControlName="job">
+                        <ng-container *ngIf="(form.get('job')?.invalid && form.get('job')?.touched) || form.get('job')?.dirty">
+                            <small class="text-danger block m-10 error" *ngIf="form.get('job')?.errors?.['required']">
+                              Job is required
+                            </small>
+                        </ng-container>                        
+                    </div>  
+                </div>
+                <div class="col-12">
+                    <button 
+                        class="btn w-fit" 
+                        [class.btn-primary]="!signal.currentUser()" 
+                        [class.btn-success]="signal.currentUser()"
+                        [disabled]="form.invalid"
+                        (click)="!signal.currentUser() ? addUser() : editUser()">
+                        {{!signal.currentUser() ? 'Add' : 'Edit'}} 
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

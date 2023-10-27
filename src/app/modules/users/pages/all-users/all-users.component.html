@@ -1,0 +1,84 @@
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-6">
+            <h3>All Available Users</h3>
+        </div>
+        <div class="col-6 text-end">
+            <a routerLink="add" class="btn btn-primary">
+                <i class="fa fa-plus" aria-hidden="true"></i>
+                Add User
+            </a>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="screen.screen() < 1024">
+        <div class="col-md-12" *ngFor="let user of users; let i = index">
+            <div class="card mb-2">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <img class="img-fluid img-thumbnail rounded-image" [src]="user?.avatar" />
+                        </div>
+                        <div class="col-md-9">
+                            <h5 class="card-title">{{user?.first_name}} {{user?.last_name}}</h5>
+                            <p class="card-text">{{user?.email}}</p>
+                        </div>
+                    </div>            
+                </div>
+                <div class="card-footer text-muted">
+                    <a routerLink="edit" class="btn btn-info rounded" (click)="signal.currentUser.set(user)">
+                        <i class="fa fa-eye" aria-hidden="true"></i>
+                    </a>
+                    <a routerLink="edit" class="btn btn-success rounded mx-2" (click)="signal.currentUser.set(user)">
+                        <i class="fa fa-pencil" aria-hidden="true"></i>
+                    </a>
+                    <button class="btn btn-danger rounded" (click)="confirmDelete(user.id)">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-2" *ngIf="screen.screen() > 1024">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">First Name</th>
+                  <th scope="col">Last Name</th>
+                  <th scope="col">Email</th>
+                  <th scope="col">Avatar</th>
+                  <th scope="col">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let user of users; let i = index">
+                    <td>{{i + 1}}</td>
+                    <td>{{user?.first_name}}</td>
+                    <td>{{user?.last_name}}</td>
+                    <td>{{user?.email}}</td>
+                    <td>
+                        <img class="img-fluid img-thumbnail rounded-image" [src]="user?.avatar" />
+                    </td>
+                    <td>
+                        <a routerLink="view/{{user.id}}" class="btn btn-info rounded">
+                            <i class="fa fa-eye" aria-hidden="true"></i>
+                        </a>
+                        <a routerLink="edit" class="btn btn-success rounded mx-2" (click)="signal.currentUser.set(user)">
+                            <i class="fa fa-pencil" aria-hidden="true"></i>
+                        </a>
+                        <button class="btn btn-danger rounded" (click)="confirmDelete(user.id)">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row" *ngIf="hasMore">
+        <button class="btn w-fit" (click)="loadMore()">
+            Load More
+        </button>
+    </div>
+</div>
